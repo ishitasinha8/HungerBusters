@@ -1,5 +1,5 @@
 # HungerBusters
-Bhook Busters
+Bhookh Busters
 
 Problem statement:
 
