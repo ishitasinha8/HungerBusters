@@ -131,11 +131,16 @@ Keep it under 50 words. Respond with ONLY the message text, no quotes or extra f
             return f"Amazing! You've saved {num_items_saved} meals from waste. Every meal saved makes a difference! 🌍"
     
     def _build_user_profile(self, user):
-        """Build a structured user profile for Claude"""
+        """Build a structured user profile for Claude with all dietary information"""
         return {
             "name": user.name,
             "location": user.location,
             "dietary_preferences": user.dietary_preferences,
+            "dietary_restrictions": getattr(user, 'dietary_restrictions', []),
+            "allergens": getattr(user, 'allergens', []),
+            "food_categories": getattr(user, 'food_categories', []),
+            "quick_preferences": getattr(user, 'quick_preferences', []),
+            "dislikes": getattr(user, 'dislikes', []),
             "food_type_preferences": user.preferences_score,
             "interaction_count": len(user.interaction_history)
         }
@@ -163,29 +168,57 @@ Keep it under 50 words. Respond with ONLY the message text, no quotes or extra f
         return items_summary
     
     def _build_recommendation_prompt(self, user_profile, items_data, mood, context):
-        """Build the prompt for Claude API"""
+        """Build the prompt for Claude API with strict dietary filtering"""
         
         time_of_day = datetime.now().hour
         meal_time = "breakfast" if time_of_day < 11 else "lunch" if time_of_day < 16 else "dinner"
         
+        # Build dietary restrictions message
+        dietary_msg = ""
+        if user_profile.get('dietary_restrictions'):
+            dietary_msg = f"\n⚠️ CRITICAL DIETARY RESTRICTIONS:\n"
+            for restriction in user_profile['dietary_restrictions']:
+                dietary_msg += f"  - {restriction.upper()}\n"
+        
+        # Build allergens message  
+        allergens_msg = ""
+        if user_profile.get('allergens'):
+            allergens_msg = f"\n🚨 CRITICAL ALLERGENS (NEVER RECOMMEND):\n"
+            for allergen in user_profile['allergens']:
+                allergens_msg += f"  - {allergen.upper()} - ABSOLUTE EXCLUSION\n"
+        
+        # Build food categories preference
+        categories_msg = ""
+        if user_profile.get('food_categories'):
+            categories_msg = f"\nPreferred Food Categories:\n  {', '.join(user_profile['food_categories'])}\n"
+        
+        # Build dislikes message
+        dislikes_msg = ""
+        if user_profile.get('dislikes'):
+            dislikes_msg = f"\nUser Dislikes (lower priority):\n  {', '.join(user_profile['dislikes'])}\n"
+        
         prompt = f"""You are a food recommendation AI helping Cornell students reduce food waste by suggesting surplus food items from campus dining halls.
+
+IMPORTANT: All items provided have ALREADY been filtered for safety. They are all safe for this user based on their dietary restrictions and allergens.
 
 User Profile:
 - Name: {user_profile['name']}
-- Location: {user_profile['location']}
-- Dietary preferences: {', '.join(user_profile['dietary_preferences']) if user_profile['dietary_preferences'] else 'No restrictions'}
+- Location: {user_profile['location']}{dietary_msg}{allergens_msg}{categories_msg}{dislikes_msg}
 - Current mood: {mood if mood else 'Not specified'}
 - Meal time: {meal_time}
 
-Available Food Items (from Cornell dining halls):
+Available Food Items (ALL PRE-FILTERED FOR SAFETY):
 {json.dumps(items_data, indent=2)}
 
-Task: Recommend the TOP 8 items that best match this user's preferences, mood, and the current time. Prioritize:
-1. Items with dietary preference match
-2. Items expiring soon (urgent = true)
-3. Items that fit the current meal time
+Task: Recommend the TOP 8 items that best match this user's preferences, mood, and the current time. 
+
+Prioritization Criteria:
+1. Items matching preferred food categories ({', '.join(user_profile.get('food_categories', [])) if user_profile.get('food_categories') else 'any'})
+2. Items expiring soon (urgent = true) to reduce waste
+3. Items that fit the current meal time ({meal_time})
 4. Variety in food types
-5. Location proximity to user
+5. Mood appropriateness
+6. Avoid items containing dislikes if possible
 
 Respond with ONLY a JSON array of item IDs with scores and brief reasons:
 [

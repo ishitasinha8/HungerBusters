@@ -372,6 +372,98 @@ HTML_TEMPLATE = '''
             header h1 {
                 font-size: 1.8em;
             }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        /* Enhanced Form Styling */
+        .form-section {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+        
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .checkbox-label:hover {
+            border-color: #B31B1B;
+            background: #fff5f5;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #B31B1B;
+        }
+        
+        .checkbox-label span {
+            font-size: 1em;
+            color: #333;
+        }
+        
+        .checkbox-label input[type="checkbox"]:checked + span {
+            font-weight: 600;
+            color: #B31B1B;
+        }
+        
+        .allergen-label {
+            border-color: #ffe0e0;
+            background: #fffafa;
+        }
+        
+        .allergen-label:hover {
+            border-color: #ff6b6b;
+            background: #fff0f0;
+        }
+        
+        .allergen-checkbox:checked + span {
+            color: #d63031 !important;
+        }
+        
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #B31B1B;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #B31B1B;
+        }
+        
+        .cu-login-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cu-login-btn:hover {
+            box-shadow: 0 5px 25px rgba(179, 27, 27, 0.5) !important;
         }
     </style>
 </head>
@@ -387,60 +479,265 @@ HTML_TEMPLATE = '''
         
         <!-- Registration Card -->
         <div class="card active" id="registrationCard">
-            <h2>Welcome! Let's Get Started</h2>
-            <p style="color: #666; margin-bottom: 20px;">
-                Sign up to get personalized AI-powered food recommendations and help reduce waste at Cornell!
+            <h2 style="text-align: center; margin-bottom: 10px;">🎓 Student Sign Up</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 25px;">
+                Join Bhookh Buster and help reduce food waste at Cornell!
             </p>
             
-            <div class="form-group">
-                <label for="userName">Your Name</label>
-                <input type="text" id="userName" placeholder="Enter your name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="userLocation">Campus Location</label>
-                <select id="userLocation">
-                    <option value="North Campus">North Campus</option>
-                    <option value="Central Campus">Central Campus</option>
-                    <option value="West Campus">West Campus</option>
-                    <option value="Collegetown">Collegetown</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label style="font-size: 1.3em; color: #333; margin-bottom: 5px;">Quick Preferences</label>
-                <p style="font-size: 0.95em; color: #666; margin-bottom: 15px;">
-                    Help our AI suggest better options for you
+            <!-- CU Login Button -->
+            <div style="margin-bottom: 25px;">
+                <button class="btn cu-login-btn" onclick="loginWithCornell()" style="background: linear-gradient(135deg, #B31B1B 0%, #8B0000 100%); display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span style="font-size: 1.2em;">🎓</span>
+                    <span>Sign in with Cornell NetID</span>
+                </button>
+                <p style="text-align: center; color: #999; margin: 15px 0; font-size: 0.9em;">
+                    ──────── or sign up manually ────────
                 </p>
-                <div class="checkbox-group" style="display: flex; flex-direction: column; gap: 15px;">
-                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
-                        <input type="checkbox" value="spicy" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
-                        I like spicy food 🌶️
+            </div>
+            
+            <!-- Basic Information -->
+            <div class="form-section" style="margin-bottom: 25px;">
+                <h3 style="color: #333; font-size: 1.2em; margin-bottom: 15px; border-left: 4px solid #B31B1B; padding-left: 12px;">
+                    Basic Information
+                </h3>
+                
+                <div class="form-group">
+                    <label for="userName">Full Name *</label>
+                    <input type="text" id="userName" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userEmail">Cornell Email *</label>
+                    <input type="email" id="userEmail" placeholder="netid@cornell.edu" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userPhone">Phone Number (Optional)</label>
+                    <input type="tel" id="userPhone" placeholder="(555) 123-4567">
+                </div>
+                
+                <div class="form-group">
+                    <label for="userLocation">Campus Location *</label>
+                    <select id="userLocation" required>
+                        <option value="">Select your location</option>
+                        <option value="North Campus">North Campus</option>
+                        <option value="Central Campus">Central Campus</option>
+                        <option value="West Campus">West Campus</option>
+                        <option value="Collegetown">Collegetown</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Dietary Restrictions -->
+            <div class="form-section" style="margin-bottom: 25px;">
+                <h3 style="color: #333; font-size: 1.2em; margin-bottom: 10px; border-left: 4px solid #B31B1B; padding-left: 12px;">
+                    Dietary Restrictions
+                </h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    Select all that apply to ensure safe food recommendations
+                </p>
+                
+                <div class="checkbox-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="vegetarian" class="dietary-checkbox">
+                        <span>🥗 Vegetarian</span>
                     </label>
-                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
-                        <input type="checkbox" value="light-meals" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
-                        I prefer light meals 🥗
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="vegan" class="dietary-checkbox">
+                        <span>🌱 Vegan</span>
                     </label>
-                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
-                        <input type="checkbox" value="high-protein" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
-                        I want high-protein options 💪
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="gluten-free" class="dietary-checkbox">
+                        <span>🌾 Gluten-Free</span>
                     </label>
-                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
-                        <input type="checkbox" value="comfort-food" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
-                        I'm craving comfort food 🍕
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="dairy-free" class="dietary-checkbox">
+                        <span>🥛 Dairy-Free</span>
                     </label>
-                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
-                        <input type="checkbox" value="vegetarian" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
-                        Vegetarian options 🌱
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="kosher" class="dietary-checkbox">
+                        <span>✡️ Kosher</span>
                     </label>
-                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
-                        <input type="checkbox" value="vegan" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
-                        Vegan options 🥑
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="halal" class="dietary-checkbox">
+                        <span>☪️ Halal</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="pescatarian" class="dietary-checkbox">
+                        <span>🐟 Pescatarian</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="low-carb" class="dietary-checkbox">
+                        <span>🥑 Low-Carb</span>
                     </label>
                 </div>
             </div>
             
-            <button class="btn" onclick="register()">Start Saving Food! 🚀</button>
+            <!-- Allergens to Avoid -->
+            <div class="form-section" style="margin-bottom: 25px;">
+                <h3 style="color: #333; font-size: 1.2em; margin-bottom: 10px; border-left: 4px solid #B31B1B; padding-left: 12px;">
+                    Allergens to Avoid
+                </h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    ⚠️ Critical for your safety - select all allergens
+                </p>
+                
+                <div class="checkbox-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="peanuts" class="allergen-checkbox">
+                        <span>🥜 Peanuts</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="tree-nuts" class="allergen-checkbox">
+                        <span>🌰 Tree Nuts</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="milk" class="allergen-checkbox">
+                        <span>🥛 Milk/Dairy</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="eggs" class="allergen-checkbox">
+                        <span>🥚 Eggs</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="soy" class="allergen-checkbox">
+                        <span>🫘 Soy</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="wheat" class="allergen-checkbox">
+                        <span>🌾 Wheat</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="fish" class="allergen-checkbox">
+                        <span>🐟 Fish</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="shellfish" class="allergen-checkbox">
+                        <span>🦐 Shellfish</span>
+                    </label>
+                    <label class="checkbox-label allergen-label">
+                        <input type="checkbox" value="sesame" class="allergen-checkbox">
+                        <span>🌾 Sesame</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Preferred Food Categories -->
+            <div class="form-section" style="margin-bottom: 25px;">
+                <h3 style="color: #333; font-size: 1.2em; margin-bottom: 10px; border-left: 4px solid #B31B1B; padding-left: 12px;">
+                    Preferred Food Categories
+                </h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    What types of food do you prefer? (Select multiple)
+                </p>
+                
+                <div class="checkbox-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="produce" class="category-checkbox">
+                        <span>🥬 Fresh Produce</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="bakery" class="category-checkbox">
+                        <span>🥖 Bakery Items</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="prepared-meals" class="category-checkbox">
+                        <span>🍱 Prepared Meals</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="snacks" class="category-checkbox">
+                        <span>🍿 Snacks</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="beverages" class="category-checkbox">
+                        <span>🥤 Beverages</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="desserts" class="category-checkbox">
+                        <span>🍰 Desserts</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="sandwiches" class="category-checkbox">
+                        <span>🥪 Sandwiches</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="salads" class="category-checkbox">
+                        <span>🥗 Salads</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" value="hot-entrees" class="category-checkbox">
+                        <span>🍝 Hot Entrées</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Food Preferences -->
+            <div class="form-section" style="margin-bottom: 25px;">
+                <h3 style="color: #333; font-size: 1.2em; margin-bottom: 10px; border-left: 4px solid #B31B1B; padding-left: 12px;">
+                    Quick Preferences
+                </h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    Help our AI suggest better options for you
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="spicy" class="preference-checkbox" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I like spicy food 🌶️
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="light-meals" class="preference-checkbox" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I prefer light meals 🥗
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="high-protein" class="preference-checkbox" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I want high-protein options 💪
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="comfort-food" class="preference-checkbox" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I'm craving comfort food 🍕
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Dislikes/Avoids -->
+            <div class="form-section" style="margin-bottom: 25px;">
+                <h3 style="color: #333; font-size: 1.2em; margin-bottom: 10px; border-left: 4px solid #B31B1B; padding-left: 12px;">
+                    Dislikes / Foods to Avoid
+                </h3>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    Foods you simply don't like or prefer to avoid (not allergies)
+                </p>
+                
+                <div class="form-group">
+                    <textarea 
+                        id="userDislikes" 
+                        placeholder="e.g., mushrooms, olives, cilantro, blue cheese, seafood, etc."
+                        style="width: 100%; min-height: 80px; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em; font-family: inherit; resize: vertical;"
+                    ></textarea>
+                    <p style="font-size: 0.85em; color: #999; margin-top: 5px;">
+                        Separate items with commas
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Terms and Conditions -->
+            <div class="form-section" style="margin-bottom: 20px;">
+                <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" id="termsCheckbox" required style="width: 20px; height: 20px; margin-top: 2px; cursor: pointer; accent-color: #B31B1B;">
+                    <span style="font-size: 0.9em; color: #555; line-height: 1.5;">
+                        I agree to the <a href="#" style="color: #B31B1B; text-decoration: none; font-weight: 600;">Terms & Conditions</a> and <a href="#" style="color: #B31B1B; text-decoration: none; font-weight: 600;">Privacy Policy</a>. I understand that food items are surplus and should be consumed promptly.
+                    </span>
+                </label>
+            </div>
+            
+            <button class="btn" onclick="register()">
+                Complete Sign Up 🚀
+            </button>
+            
+            <p style="text-align: center; color: #999; margin-top: 15px; font-size: 0.9em;">
+                Already have an account? <a href="#" onclick="showLogin()" style="color: #B31B1B; text-decoration: none; font-weight: 600;">Sign In</a>
+            </p>
         </div>
         
         <!-- Main Content -->

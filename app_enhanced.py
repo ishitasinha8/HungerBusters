@@ -42,9 +42,23 @@ class BhookhBusterService:
         self.orders = []
         self.order_counter = 0
     
-    def register_user(self, user_id, name, location, dietary_preferences=None):
-        """Register a new user"""
-        user = User(user_id, name, location, dietary_preferences)
+    def register_user(self, user_id, name, location, dietary_preferences=None, email=None, phone=None,
+                      dietary_restrictions=None, allergens=None, food_categories=None,
+                      quick_preferences=None, dislikes=None):
+        """Register a new user with comprehensive profile"""
+        user = User(
+            user_id=user_id,
+            name=name,
+            location=location,
+            dietary_preferences=dietary_preferences,
+            email=email,
+            phone=phone,
+            dietary_restrictions=dietary_restrictions,
+            allergens=allergens,
+            food_categories=food_categories,
+            quick_preferences=quick_preferences,
+            dislikes=dislikes
+        )
         self.users[user_id] = user
         return user
     
@@ -53,7 +67,7 @@ class BhookhBusterService:
         return self.users.get(user_id)
     
     def create_surprise_bag(self, user_id):
-        """Create a free surprise bag for the user"""
+        """Create a free surprise bag for the user with dietary filtering"""
         user = self.get_user(user_id)
         if not user:
             return {'error': 'User not found'}
@@ -64,18 +78,18 @@ class BhookhBusterService:
         if not available_items:
             return {'error': 'No surplus food available nearby'}
         
-        # Filter by user preferences if any
-        filtered_items = self._filter_by_preferences(available_items, user)
+        # CRITICAL: Filter by dietary restrictions and allergens
+        safe_items = self._filter_safe_items(available_items, user)
         
-        if not filtered_items:
-            filtered_items = available_items  # Fallback to all items
+        if not safe_items:
+            return {'error': 'No items available matching your dietary requirements. Please check your preferences.'}
         
-        # Select random items for surprise bag
+        # Select random items for surprise bag from safe items only
         bag_size = min(
             random.randint(Config.SURPRISE_BAG_MIN_ITEMS, Config.SURPRISE_BAG_MAX_ITEMS),
-            len(filtered_items)
+            len(safe_items)
         )
-        surprise_bag = random.sample(filtered_items, bag_size)
+        surprise_bag = random.sample(safe_items, bag_size)
         
         return {
             'type': 'surprise_bag',
@@ -86,30 +100,162 @@ class BhookhBusterService:
         }
     
     def get_ai_suggestions(self, user_id, mood=None):
-        """Get AI-powered food suggestions using Claude"""
+        """Get AI-powered food suggestions using Claude with strict filtering"""
         user = self.get_user(user_id)
         if not user:
             return []
         
         # Get all available items
-        available_items = self.data_manager.get_all_available_items(user.location)
+        all_items = self.data_manager.get_all_available_items(user.location)
         
-        if not available_items:
+        if not all_items:
             return []
         
-        # Use Claude AI for intelligent recommendations
+        # CRITICAL: Filter out items based on dietary restrictions and allergens
+        safe_items = self._filter_safe_items(all_items, user)
+        
+        if not safe_items:
+            print(f"No safe items found for user {user_id} after filtering")
+            return []
+        
+        print(f"Filtered from {len(all_items)} to {len(safe_items)} safe items for user")
+        
+        # Use Claude AI for intelligent recommendations on safe items only
         try:
             suggestions = self.claude_ai.get_personalized_suggestions(
                 user=user,
-                available_items=available_items,
+                available_items=safe_items,  # Only send safe items to AI
                 mood=mood,
                 context={'time': datetime.now().hour}
             )
             return suggestions
         except Exception as e:
             print(f"Error getting AI suggestions: {e}")
-            # Fallback to basic scoring
-            return self._basic_suggestions(available_items, user, mood)
+            # Fallback to basic scoring with safe items only
+            return self._basic_suggestions(safe_items, user, mood)
+    
+    def _filter_safe_items(self, items, user):
+        """
+        Filter items to ensure they're safe and compatible with user's dietary restrictions.
+        This is CRITICAL for user safety and satisfaction.
+        """
+        safe_items = []
+        
+        for item in items:
+            # Skip if None
+            if not item:
+                continue
+            
+            item_name = item.get('name', '').lower()
+            item_type = item.get('food_type', '').lower()
+            
+            # CRITICAL: Check allergens - NEVER show items with user's allergens
+            if user.allergens:
+                has_allergen = False
+                for allergen in user.allergens:
+                    allergen_lower = allergen.lower()
+                    # Check in name and food type
+                    if allergen_lower in item_name or allergen_lower in item_type:
+                        has_allergen = True
+                        break
+                    
+                    # Common allergen mappings
+                    allergen_keywords = {
+                        'peanuts': ['peanut', 'pb&j', 'peanut butter'],
+                        'tree-nuts': ['almond', 'walnut', 'cashew', 'pecan', 'pistachio', 'nut'],
+                        'milk': ['milk', 'dairy', 'cheese', 'yogurt', 'cream', 'butter'],
+                        'eggs': ['egg', 'omelet', 'omelette', 'quiche'],
+                        'soy': ['soy', 'tofu', 'edamame', 'miso'],
+                        'wheat': ['wheat', 'bread', 'pasta', 'noodle', 'flour'],
+                        'fish': ['fish', 'salmon', 'tuna', 'cod', 'tilapia'],
+                        'shellfish': ['shrimp', 'crab', 'lobster', 'shellfish', 'prawn'],
+                        'sesame': ['sesame', 'tahini']
+                    }
+                    
+                    if allergen_lower in allergen_keywords:
+                        keywords = allergen_keywords[allergen_lower]
+                        if any(keyword in item_name for keyword in keywords):
+                            has_allergen = True
+                            break
+                
+                if has_allergen:
+                    continue  # Skip this item - contains allergen
+            
+            # Check dietary restrictions
+            if user.dietary_restrictions:
+                is_compatible = True
+                
+                for restriction in user.dietary_restrictions:
+                    restriction_lower = restriction.lower()
+                    
+                    # Vegetarian: No meat or fish
+                    if restriction_lower == 'vegetarian':
+                        meat_keywords = ['chicken', 'beef', 'pork', 'turkey', 'meat', 
+                                       'bacon', 'sausage', 'ham', 'lamb', 'goat', 
+                                       'fish', 'salmon', 'tuna', 'shrimp', 'seafood']
+                        if any(keyword in item_name for keyword in meat_keywords):
+                            is_compatible = False
+                            break
+                    
+                    # Vegan: No animal products
+                    elif restriction_lower == 'vegan':
+                        animal_keywords = ['chicken', 'beef', 'pork', 'turkey', 'meat',
+                                         'bacon', 'sausage', 'ham', 'lamb', 'goat',
+                                         'fish', 'salmon', 'tuna', 'shrimp', 'seafood',
+                                         'milk', 'dairy', 'cheese', 'yogurt', 'cream',
+                                         'egg', 'butter', 'honey']
+                        if any(keyword in item_name for keyword in animal_keywords):
+                            is_compatible = False
+                            break
+                    
+                    # Gluten-Free: No wheat products
+                    elif restriction_lower == 'gluten-free':
+                        gluten_keywords = ['bread', 'pasta', 'noodle', 'wheat', 'flour',
+                                         'bagel', 'muffin', 'cake', 'cookie', 'pizza',
+                                         'sandwich', 'wrap', 'tortilla', 'pita']
+                        if any(keyword in item_name for keyword in gluten_keywords):
+                            is_compatible = False
+                            break
+                    
+                    # Dairy-Free: No dairy products
+                    elif restriction_lower == 'dairy-free':
+                        dairy_keywords = ['milk', 'cheese', 'yogurt', 'cream', 'butter',
+                                        'dairy', 'ice cream', 'whey', 'casein']
+                        if any(keyword in item_name for keyword in dairy_keywords):
+                            is_compatible = False
+                            break
+                    
+                    # Pescatarian: No meat except fish
+                    elif restriction_lower == 'pescatarian':
+                        meat_keywords = ['chicken', 'beef', 'pork', 'turkey', 'meat',
+                                       'bacon', 'sausage', 'ham', 'lamb', 'goat']
+                        if any(keyword in item_name for keyword in meat_keywords):
+                            is_compatible = False
+                            break
+                    
+                    # Halal: No pork
+                    elif restriction_lower == 'halal':
+                        if 'pork' in item_name or 'bacon' in item_name or 'ham' in item_name:
+                            is_compatible = False
+                            break
+                    
+                    # Kosher: No pork, no shellfish
+                    elif restriction_lower == 'kosher':
+                        non_kosher = ['pork', 'bacon', 'ham', 'shrimp', 'crab', 'lobster', 'shellfish']
+                        if any(keyword in item_name for keyword in non_kosher):
+                            is_compatible = False
+                            break
+                
+                if not is_compatible:
+                    continue  # Skip this item - doesn't match dietary restrictions
+            
+            # Check dislikes (negative preference, not strict filter)
+            # We'll let some through but penalize in scoring
+            
+            # Item passed all filters!
+            safe_items.append(item)
+        
+        return safe_items
     
     def get_meal_insights(self, user_id, selected_items):
         """Get AI insights about selected meal"""
@@ -138,10 +284,13 @@ class BhookhBusterService:
         custom_items = []
         total_cost = 0
         
-        # Get all available items and filter by selected IDs
+        # Get all available items
         all_items = self.data_manager.get_all_available_items(user.location)
         
-        for item in all_items:
+        # Filter to safe items only
+        safe_items = self._filter_safe_items(all_items, user)
+        
+        for item in safe_items:
             if item['item_id'] in selected_items:
                 discount_price = round(item['original_price'] * Config.DISCOUNT_RATE, 2)
                 custom_items.append({
@@ -149,6 +298,9 @@ class BhookhBusterService:
                     'discount_price': discount_price
                 })
                 total_cost += discount_price
+        
+        if not custom_items:
+            return {'error': 'Selected items are not compatible with your dietary restrictions'}
         
         # Get AI-generated impact message
         try:
@@ -250,13 +402,20 @@ def index():
 
 @app.route('/api/register', methods=['POST'])
 def register():
-    """Register a new user"""
+    """Register a new user with comprehensive profile"""
     data = request.json
     user = bhookh_service.register_user(
-        data['user_id'],
-        data['name'],
-        data['location'],
-        data.get('dietary_preferences', [])
+        user_id=data['user_id'],
+        name=data['name'],
+        location=data['location'],
+        dietary_preferences=data.get('dietary_preferences', []),
+        email=data.get('email'),
+        phone=data.get('phone'),
+        dietary_restrictions=data.get('dietary_restrictions', []),
+        allergens=data.get('allergens', []),
+        food_categories=data.get('food_categories', []),
+        quick_preferences=data.get('quick_preferences', []),
+        dislikes=data.get('dislikes', [])
     )
     session['user_id'] = user.user_id
     return jsonify({'success': True, 'user_id': user.user_id})
