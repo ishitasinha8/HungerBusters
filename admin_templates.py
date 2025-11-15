@@ -13,7 +13,7 @@ ADMIN_LOGIN_TEMPLATE = '''
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B1515 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -33,7 +33,7 @@ ADMIN_LOGIN_TEMPLATE = '''
             margin-bottom: 30px;
         }
         .logo h1 {
-            color: #1e3c72;
+            color: #B31B1B;
             font-size: 2em;
             margin-bottom: 5px;
         }
@@ -59,12 +59,12 @@ ADMIN_LOGIN_TEMPLATE = '''
         }
         .form-group input:focus {
             outline: none;
-            border-color: #1e3c72;
+            border-color: #B31B1B;
         }
         .btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B1515 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -75,7 +75,7 @@ ADMIN_LOGIN_TEMPLATE = '''
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+            box-shadow: 0 5px 15px rgba(179, 27, 27, 0.4);
         }
         .error {
             background: #f44336;
@@ -94,7 +94,7 @@ ADMIN_LOGIN_TEMPLATE = '''
             color: #666;
         }
         .register-link a {
-            color: #1e3c72;
+            color: #B31B1B;
             text-decoration: none;
             font-weight: 600;
         }
@@ -176,7 +176,7 @@ ADMIN_REGISTER_TEMPLATE = '''
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B1515 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -196,7 +196,7 @@ ADMIN_REGISTER_TEMPLATE = '''
             margin-bottom: 30px;
         }
         .logo h1 {
-            color: #1e3c72;
+            color: #B31B1B;
             font-size: 2em;
             margin-bottom: 5px;
         }
@@ -222,12 +222,12 @@ ADMIN_REGISTER_TEMPLATE = '''
         }
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #1e3c72;
+            border-color: #B31B1B;
         }
         .btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B1515 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -238,7 +238,7 @@ ADMIN_REGISTER_TEMPLATE = '''
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+            box-shadow: 0 5px 15px rgba(179, 27, 27, 0.4);
         }
         .message {
             padding: 12px;
@@ -263,7 +263,7 @@ ADMIN_REGISTER_TEMPLATE = '''
             color: #666;
         }
         .login-link a {
-            color: #1e3c72;
+            color: #B31B1B;
             text-decoration: none;
             font-weight: 600;
         }
@@ -375,7 +375,7 @@ ADMIN_DASHBOARD_TEMPLATE = '''
             background: #f5f5f5;
         }
         .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B1515 100%);
             color: white;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -431,7 +431,7 @@ ADMIN_DASHBOARD_TEMPLATE = '''
         .stat-card .number {
             font-size: 2.5em;
             font-weight: bold;
-            color: #1e3c72;
+            color: #B31B1B;
         }
         .card {
             background: white;
@@ -483,7 +483,7 @@ ADMIN_DASHBOARD_TEMPLATE = '''
             gap: 10px;
         }
         .quantity-control button {
-            background: #1e3c72;
+            background: #B31B1B;
             color: white;
             border: none;
             width: 30px;
@@ -492,7 +492,7 @@ ADMIN_DASHBOARD_TEMPLATE = '''
             cursor: pointer;
         }
         .quantity-control button:hover {
-            background: #2a5298;
+            background: #8B1515;
         }
         .quantity-control input {
             width: 60px;
@@ -587,7 +587,7 @@ ADMIN_DASHBOARD_TEMPLATE = '''
             font-size: 16px;
         }
         .btn-primary {
-            background: #1e3c72;
+            background: #B31B1B;
             color: white;
         }
         .btn-secondary {
