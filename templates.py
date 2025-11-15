@@ -18,7 +18,7 @@ HTML_TEMPLATE = '''
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B0000 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -43,7 +43,7 @@ HTML_TEMPLATE = '''
         
         .ai-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B0000 100%);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 0.9em;
@@ -107,7 +107,7 @@ HTML_TEMPLATE = '''
         input[type="text"]:focus,
         select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #B31B1B;
         }
         
         .checkbox-group {
@@ -130,7 +130,7 @@ HTML_TEMPLATE = '''
         }
         
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B0000 100%);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -145,7 +145,7 @@ HTML_TEMPLATE = '''
         
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 20px rgba(179, 27, 27, 0.4);
         }
         
         .btn-success {
@@ -164,7 +164,7 @@ HTML_TEMPLATE = '''
         }
         
         .action-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #B31B1B 0%, #8B0000 100%);
             color: white;
             padding: 30px;
             border-radius: 12px;
@@ -197,31 +197,33 @@ HTML_TEMPLATE = '''
         }
         
         .mood-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
             margin-top: 15px;
         }
         
         .mood-btn {
-            padding: 15px 20px;
+            padding: 15px 30px;
             background: white;
             border: 3px solid #e0e0e0;
-            border-radius: 10px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 1.1em;
+            min-width: 140px;
         }
         
         .mood-btn:hover {
-            border-color: #667eea;
+            border-color: #B31B1B;
             transform: scale(1.05);
         }
         
         .mood-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #B31B1B;
             color: white;
-            border-color: #667eea;
+            border-color: #B31B1B;
         }
         
         .items-grid {
@@ -241,7 +243,7 @@ HTML_TEMPLATE = '''
         }
         
         .item-card:hover {
-            border-color: #667eea;
+            border-color: #B31B1B;
             transform: translateY(-5px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
@@ -406,17 +408,35 @@ HTML_TEMPLATE = '''
             </div>
             
             <div class="form-group">
-                <label>Dietary Preferences (Optional)</label>
-                <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">
-                    Help Claude AI personalize your recommendations
+                <label style="font-size: 1.3em; color: #333; margin-bottom: 5px;">Quick Preferences</label>
+                <p style="font-size: 0.95em; color: #666; margin-bottom: 15px;">
+                    Help our AI suggest better options for you
                 </p>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" value="vegetarian"> 🥗 Vegetarian</label>
-                    <label><input type="checkbox" value="vegan"> 🌱 Vegan</label>
-                    <label><input type="checkbox" value="healthy"> 💪 Healthy</label>
-                    <label><input type="checkbox" value="italian"> 🍝 Italian</label>
-                    <label><input type="checkbox" value="asian"> 🍜 Asian</label>
-                    <label><input type="checkbox" value="american"> 🍔 American</label>
+                <div class="checkbox-group" style="display: flex; flex-direction: column; gap: 15px;">
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="spicy" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I like spicy food 🌶️
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="light-meals" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I prefer light meals 🥗
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="high-protein" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I want high-protein options 💪
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="comfort-food" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        I'm craving comfort food 🍕
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="vegetarian" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        Vegetarian options 🌱
+                    </label>
+                    <label style="display: flex; align-items: center; font-size: 1.05em; color: #333; font-weight: normal;">
+                        <input type="checkbox" value="vegan" style="width: 20px; height: 20px; margin-right: 12px; cursor: pointer; accent-color: #B31B1B;"> 
+                        Vegan options 🥑
+                    </label>
                 </div>
             </div>
             
@@ -446,16 +466,17 @@ HTML_TEMPLATE = '''
         <div id="resultsSection">
             <!-- Mood Selector -->
             <div class="card mood-selector" id="moodSelector">
-                <h2>What's Your Vibe Today?</h2>
-                <p style="color: #666; margin-bottom: 15px;">
-                    Tell Claude AI how you're feeling for better recommendations
+                <h2 style="font-size: 1.8em; margin-bottom: 10px;">What's your mood today?</h2>
+                <p style="color: #666; margin-bottom: 20px; font-size: 1.05em;">
+                    Our AI will tailor suggestions to match your vibe
                 </p>
                 <div class="mood-buttons">
                     <button class="mood-btn" data-mood="happy">😊 Happy</button>
                     <button class="mood-btn" data-mood="stressed">😰 Stressed</button>
-                    <button class="mood-btn" data-mood="healthy">💪 Healthy</button>
-                    <button class="mood-btn" data-mood="adventurous">🌟 Adventurous</button>
+                    <button class="mood-btn" data-mood="healthy">🥗 Healthy</button>
+                    <button class="mood-btn" data-mood="adventurous">🌶️ Adventurous</button>
                     <button class="mood-btn" data-mood="tired">😴 Tired</button>
+                    <button class="mood-btn" data-mood="energetic">⚡ Energetic</button>
                 </div>
             </div>
             

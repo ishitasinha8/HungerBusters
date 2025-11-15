@@ -46,21 +46,22 @@ class Config:
     ]
     
     DIETARY_PREFERENCES = [
+        'spicy',
+        'light-meals',
+        'high-protein',
+        'comfort-food',
         'vegetarian',
-        'vegan',
-        'healthy',
-        'italian',
-        'asian',
-        'american'
+        'vegan'
     ]
     
     # Mood-food mapping
     MOOD_FOOD_MAP = {
         'happy': {'italian': 10, 'american': 8, 'asian': 7},
-        'stressed': {'healthy': 10, 'italian': 8, 'american': 7},
-        'healthy': {'healthy': 10, 'vegetarian': 9},
-        'adventurous': {'asian': 10, 'italian': 7},
-        'tired': {'american': 10, 'italian': 8}
+        'stressed': {'healthy': 10, 'comfort-food': 9, 'italian': 8},
+        'healthy': {'healthy': 10, 'vegetarian': 9, 'light-meals': 9},
+        'adventurous': {'asian': 10, 'spicy': 10, 'italian': 7},
+        'tired': {'comfort-food': 10, 'american': 8, 'italian': 8},
+        'energetic': {'high-protein': 10, 'healthy': 9, 'spicy': 8}
     }
 
 class DevelopmentConfig(Config):
