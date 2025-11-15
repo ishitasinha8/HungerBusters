@@ -1,6 +1,44 @@
 # 🍽️ Bhookh Buster - Cornell Dining Edition
 
-A food security web application that helps reduce food waste from Cornell dining halls by connecting students with surplus food at discounted prices.
+# Surplus Food Distribution App
+
+A platform to reduce food waste by connecting dining halls, restaurants, and cafeterias with students or community members. This project introduces AI-powered personalized food recommendations and a free surprise food bag feature.
+
+---
+
+## 🚀 Project Description
+
+This project helps redistribute surplus food after each meal to reduce waste and ensure that safe, suitable, and personalized food reaches people who need it. 
+
+### ⭐ Key Features
+
+1. **🎁 Free Surprise Food Bag**
+   Users can get free surprise bags based on available surplus.
+
+2. **🤖 AI-Recommended Food (Claude API Integration)**
+   Based on:
+
+   * Signup profile data
+   * Quick meal mood questionnaire ("What are you in the mood for today?")
+     The AI suggests relevant food options.
+
+3. **🔐 JWT-Based Signup & Authentication**
+   The signup flow captures detailed preferences to ensure safe and satisfying recommendations.
+
+---
+
+## 📚 Use Case
+
+### Scenario: Campus Dining
+
+Dining halls often have surplus food after breakfast, lunch, or dinner.
+
+* Instead of throwing it away, they list the surplus.
+* Students can pick a **free surprise bag** or get **AI-curated recommendations** based on mood + dietary profile.
+* Reduces food waste while ensuring students receive safe, enjoyable meals.
+
+The platform is designed to naturally scale beyond college dining halls and extend into restaurants, cafés, bakeries, and other food businesses that frequently generate surplus food. By providing a simple vendor onboarding system, flexible surplus listing tools, and AI-driven matching, the system can seamlessly integrate with restaurants of any size. This expansion unlocks a larger variety of food options, enables city-wide or community-wide food redistribution, and significantly amplifies impact by connecting more surplus sources with people who need access to safe, affordable meals.
+---
 
 ## 📁 Project Structure
 
