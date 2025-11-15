@@ -11,7 +11,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or secrets.token_hex(16)
     DEBUG = True
     HOST = '0.0.0.0'
-    PORT = 5000
+    PORT = 5001
     
     # Data settings
     DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')

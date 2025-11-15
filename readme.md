@@ -46,7 +46,7 @@ Create `static/app.js` and copy the frontend JavaScript code from the `app.js` a
 Run the scraper to fetch dining hall data from Cornell's API:
 
 ```bash
-python cornell_dining_scraper.py
+python cornell_scraper_modular.py
 ```
 
 This will:
