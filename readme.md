@@ -1,4 +1,4 @@
-# 🍽️ Bhookh Buster - Cornell Dining Edition
+# 🍽️ HungerBuster - Cornell Dining Edition
 
 # Surplus Food Distribution App
 
