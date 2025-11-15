@@ -3,6 +3,7 @@ Data models for Bhookh Buster application
 """
 
 from datetime import datetime
+import hashlib
 
 class User:
     """User model for tracking preferences and interactions"""
@@ -43,6 +44,37 @@ class User:
         }
 
 
+class DiningHallAdmin:
+    """Admin account for dining hall staff"""
+    
+    def __init__(self, admin_id, restaurant_id, username, password_hash, email):
+        self.admin_id = admin_id
+        self.restaurant_id = restaurant_id
+        self.username = username
+        self.password_hash = password_hash
+        self.email = email
+        self.created_at = datetime.now().isoformat()
+    
+    @staticmethod
+    def hash_password(password):
+        """Hash a password for storage"""
+        return hashlib.sha256(password.encode()).hexdigest()
+    
+    def verify_password(self, password):
+        """Verify a password against the hash"""
+        return self.password_hash == self.hash_password(password)
+    
+    def to_dict(self):
+        """Convert admin to dictionary (excluding password)"""
+        return {
+            'admin_id': self.admin_id,
+            'restaurant_id': self.restaurant_id,
+            'username': self.username,
+            'email': self.email,
+            'created_at': self.created_at
+        }
+
+
 class Restaurant:
     """Restaurant/Dining hall model"""
     
@@ -56,6 +88,22 @@ class Restaurant:
     def add_surplus_food(self, food_item):
         """Add a surplus food item to inventory"""
         self.surplus_inventory.append(food_item)
+        
+    def update_item_quantity(self, item_id, new_quantity):
+        """Update the quantity of a specific item"""
+        for item in self.surplus_inventory:
+            if item['item_id'] == item_id:
+                item['quantity'] = new_quantity
+                item['updated_at'] = datetime.now().isoformat()
+                return True
+        return False
+    
+    def remove_item(self, item_id):
+        """Remove an item from inventory"""
+        self.surplus_inventory = [
+            item for item in self.surplus_inventory 
+            if item['item_id'] != item_id
+        ]
         
     def get_available_items(self):
         """Get all non-expired items"""
@@ -90,7 +138,7 @@ class Order:
     def __init__(self, order_id, user_id, order_type, items, cost):
         self.order_id = order_id
         self.user_id = user_id
-        self.order_type = order_type  # 'surprise_bag' or 'custom_bag'
+        self.order_type = order_type
         self.items = items
         self.cost = cost
         self.status = 'confirmed'

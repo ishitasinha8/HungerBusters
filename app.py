@@ -6,17 +6,18 @@ Run: python app.py
 Then open: http://localhost:5000
 """
 
-from flask import Flask, render_template_string, jsonify, request, session
+from flask import Flask, render_template_string, jsonify, request, session, redirect, url_for
 from flask_cors import CORS
-from datetime import datetime
+from datetime import datetime, timedelta
 import random
 import os
 
 # Import project modules
 from config import Config
-from models import User, Order
+from models import User, Order, DiningHallAdmin
 from data_manager import DataManager
 from templates import HTML_TEMPLATE
+from admin_templates import ADMIN_LOGIN_TEMPLATE, ADMIN_REGISTER_TEMPLATE, ADMIN_DASHBOARD_TEMPLATE
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -36,6 +37,54 @@ class BhookhBusterService:
         self.users = {}
         self.orders = []
         self.order_counter = 0
+        self.admins = {}
+        self.admin_counter = 0
+        self._init_demo_admin()
+    
+    def _init_demo_admin(self):
+        """Create a demo admin account for testing"""
+        # Get first restaurant if available
+        if self.data_manager.restaurants:
+            first_restaurant_id = list(self.data_manager.restaurants.keys())[0]
+            demo_admin = DiningHallAdmin(
+                'A001',
+                first_restaurant_id,
+                'admin',
+                DiningHallAdmin.hash_password('admin123'),
+                'admin@cornell.edu'
+            )
+            self.admins['admin'] = demo_admin
+            print(f"✓ Demo admin created - Username: admin, Password: admin123")
+    
+    def register_admin(self, restaurant_id, username, email, password):
+        """Register a new dining hall admin"""
+        if username in self.admins:
+            return {'success': False, 'error': 'Username already exists'}
+        
+        self.admin_counter += 1
+        admin = DiningHallAdmin(
+            f'A{self.admin_counter:03d}',
+            restaurant_id,
+            username,
+            DiningHallAdmin.hash_password(password),
+            email
+        )
+        self.admins[username] = admin
+        return {'success': True, 'admin_id': admin.admin_id}
+    
+    def authenticate_admin(self, username, password):
+        """Authenticate an admin user"""
+        admin = self.admins.get(username)
+        if admin and admin.verify_password(password):
+            return admin
+        return None
+    
+    def get_admin_restaurant(self, username):
+        """Get the restaurant associated with an admin"""
+        admin = self.admins.get(username)
+        if admin:
+            return self.data_manager.get_restaurant(admin.restaurant_id)
+        return None
     
     def register_user(self, user_id, name, location, dietary_preferences=None):
         """Register a new user"""
@@ -269,6 +318,202 @@ def refresh_data():
     """Refresh dining data from Cornell API"""
     success = data_manager.refresh_data()
     return jsonify({'success': success})
+
+
+# ============= ADMIN ROUTES =============
+
+@app.route('/admin/login')
+def admin_login():
+    """Admin login page"""
+    return render_template_string(ADMIN_LOGIN_TEMPLATE)
+
+
+@app.route('/admin/register')
+def admin_register():
+    """Admin registration page"""
+    restaurants = [r.to_dict() for r in data_manager.restaurants.values()]
+    return render_template_string(
+        ADMIN_REGISTER_TEMPLATE,
+        restaurants=restaurants
+    )
+
+
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    """Admin dashboard page"""
+    if 'admin_username' not in session:
+        return redirect(url_for('admin_login'))
+    
+    username = session['admin_username']
+    restaurant = bhookh_service.get_admin_restaurant(username)
+    
+    if not restaurant:
+        return redirect(url_for('admin_login'))
+    
+    return render_template_string(
+        ADMIN_DASHBOARD_TEMPLATE,
+        username=username,
+        restaurant_name=restaurant.name,
+        restaurant_location=restaurant.location
+    )
+
+
+@app.route('/admin/api/login', methods=['POST'])
+def admin_api_login():
+    """Admin login API"""
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+    
+    admin = bhookh_service.authenticate_admin(username, password)
+    
+    if admin:
+        session['admin_username'] = username
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'error': 'Invalid credentials'})
+
+
+@app.route('/admin/api/register', methods=['POST'])
+def admin_api_register():
+    """Admin registration API"""
+    data = request.json
+    
+    result = bhookh_service.register_admin(
+        data['restaurant_id'],
+        data['username'],
+        data['email'],
+        data['password']
+    )
+    
+    return jsonify(result)
+
+
+@app.route('/admin/api/logout', methods=['POST'])
+def admin_api_logout():
+    """Admin logout API"""
+    session.pop('admin_username', None)
+    return jsonify({'success': True})
+
+
+@app.route('/admin/api/inventory')
+def admin_get_inventory():
+    """Get inventory for admin's restaurant"""
+    if 'admin_username' not in session:
+        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+    
+    username = session['admin_username']
+    restaurant = bhookh_service.get_admin_restaurant(username)
+    
+    if not restaurant:
+        return jsonify({'success': False, 'error': 'Restaurant not found'}), 404
+    
+    items = restaurant.surplus_inventory
+    return jsonify({'success': True, 'items': items})
+
+
+@app.route('/admin/api/add-item', methods=['POST'])
+def admin_add_item():
+    """Add a new surplus food item"""
+    if 'admin_username' not in session:
+        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+    
+    username = session['admin_username']
+    restaurant = bhookh_service.get_admin_restaurant(username)
+    
+    if not restaurant:
+        return jsonify({'success': False, 'error': 'Restaurant not found'}), 404
+    
+    data = request.json
+    
+    # Generate item ID
+    item_count = len(restaurant.surplus_inventory) + 1
+    item_id = f"{restaurant.restaurant_id}_F{item_count:03d}"
+    
+    # Calculate expiry time
+    expiry_time = datetime.now() + timedelta(hours=data['expiry_hours'])
+    
+    # Create item
+    item = {
+        'item_id': item_id,
+        'restaurant_id': restaurant.restaurant_id,
+        'name': data['name'],
+        'food_type': data['food_type'],
+        'original_price': int(data['original_price']),
+        'quantity': data['quantity'],
+        'expiry': expiry_time.isoformat(),
+        'created_at': datetime.now().isoformat()
+    }
+    
+    restaurant.add_surplus_food(item)
+    
+    return jsonify({'success': True, 'item': item})
+
+
+@app.route('/admin/api/update-quantity', methods=['POST'])
+def admin_update_quantity():
+    """Update item quantity (increment/decrement)"""
+    if 'admin_username' not in session:
+        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+    
+    username = session['admin_username']
+    restaurant = bhookh_service.get_admin_restaurant(username)
+    
+    if not restaurant:
+        return jsonify({'success': False, 'error': 'Restaurant not found'}), 404
+    
+    data = request.json
+    item_id = data['item_id']
+    change = data['change']
+    
+    item = restaurant.get_item_by_id(item_id)
+    if item:
+        new_quantity = max(0, item['quantity'] + change)
+        restaurant.update_item_quantity(item_id, new_quantity)
+        return jsonify({'success': True})
+    
+    return jsonify({'success': False, 'error': 'Item not found'})
+
+
+@app.route('/admin/api/set-quantity', methods=['POST'])
+def admin_set_quantity():
+    """Set item quantity to specific value"""
+    if 'admin_username' not in session:
+        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+    
+    username = session['admin_username']
+    restaurant = bhookh_service.get_admin_restaurant(username)
+    
+    if not restaurant:
+        return jsonify({'success': False, 'error': 'Restaurant not found'}), 404
+    
+    data = request.json
+    item_id = data['item_id']
+    quantity = max(0, data['quantity'])
+    
+    success = restaurant.update_item_quantity(item_id, quantity)
+    
+    return jsonify({'success': success})
+
+
+@app.route('/admin/api/delete-item', methods=['POST'])
+def admin_delete_item():
+    """Delete an item from inventory"""
+    if 'admin_username' not in session:
+        return jsonify({'success': False, 'error': 'Not authenticated'}), 401
+    
+    username = session['admin_username']
+    restaurant = bhookh_service.get_admin_restaurant(username)
+    
+    if not restaurant:
+        return jsonify({'success': False, 'error': 'Restaurant not found'}), 404
+    
+    data = request.json
+    item_id = data['item_id']
+    
+    restaurant.remove_item(item_id)
+    
+    return jsonify({'success': True})
 
 
 # ============= MAIN =============
