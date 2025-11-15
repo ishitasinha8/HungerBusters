@@ -6,18 +6,19 @@ Run: python app.py
 Then open: http://localhost:5000
 """
 
-from flask import Flask, render_template_string, jsonify, request, session
-from flask_cors import CORS
-from datetime import datetime
-import random
 import os
+import random
+from datetime import datetime
 
+from flask import Flask, jsonify, render_template_string, request, session
+from flask_cors import CORS
+
+from claude_ai_service import ClaudeAIService
 # Import project modules
 from config import Config
-from models import User, Order
 from data_manager import DataManager
+from models import Order, User
 from templates import HTML_TEMPLATE
-from claude_ai_service import ClaudeAIService
 
 # Initialize Flask app
 app = Flask(__name__)
