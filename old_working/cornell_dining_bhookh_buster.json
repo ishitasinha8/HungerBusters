@@ -1,0 +1,1339 @@
+{
+  "restaurants": [
+    {
+      "id": "R001",
+      "name": "104West!",
+      "location": "West Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R002",
+      "name": "Amit Bhatia Libe Caf\u00e9",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R003",
+      "name": "Atrium Caf\u00e9",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R004",
+      "name": "Bear Necessities Grill & C-Store",
+      "location": "North Campus",
+      "cuisine_type": "American"
+    },
+    {
+      "id": "R005",
+      "name": "Becker House Dining Room",
+      "location": "West Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R006",
+      "name": "Big Red Barn",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R007",
+      "name": "Bus Stop Bagels",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R008",
+      "name": "Caf\u00e9 Jennie",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R009",
+      "name": "College of Veterinary Medicine Caf\u00e9",
+      "location": "East Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R010",
+      "name": "Cook House Dining Room",
+      "location": "West Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R011",
+      "name": "Cornell Dairy Bar",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R012",
+      "name": "Crossings Caf\u00e9",
+      "location": "North Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R013",
+      "name": "Franny's",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R014",
+      "name": "Goldie's Caf\u00e9",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R015",
+      "name": "Green Dragon",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R016",
+      "name": "Hot Dog Cart",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R017",
+      "name": "Ice Cream Bike",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R018",
+      "name": "Jansen's Dining Room at Bethe House",
+      "location": "West Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R019",
+      "name": "Jansen's Market",
+      "location": "West Campus",
+      "cuisine_type": "Market"
+    },
+    {
+      "id": "R020",
+      "name": "Keeton House Dining Room",
+      "location": "West Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R021",
+      "name": "Mann Caf\u00e9",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R022",
+      "name": "Martha's Caf\u00e9",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R023",
+      "name": "Mattin's Caf\u00e9",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R024",
+      "name": "McCormick's Restaurant",
+      "location": "North Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R025",
+      "name": "Morrison Dining",
+      "location": "North Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R026",
+      "name": "North Star Dining Room",
+      "location": "North Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R027",
+      "name": "Novick's Caf\u00e9",
+      "location": "North Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R028",
+      "name": "Okenshields",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R029",
+      "name": "Risley Dining Room",
+      "location": "North Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R030",
+      "name": "Rose House Dining Room",
+      "location": "West Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R031",
+      "name": "Rusty's",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    },
+    {
+      "id": "R032",
+      "name": "Straight from the Market",
+      "location": "Central Campus",
+      "cuisine_type": "Market"
+    },
+    {
+      "id": "R033",
+      "name": "Trillium",
+      "location": "Central Campus",
+      "cuisine_type": "Dining Hall"
+    }
+  ],
+  "food_items": [
+    {
+      "restaurant_id": "R001",
+      "item_id": "R001_F001",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 243,
+      "expiry": "2025-11-15T21:07:36.752671",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R001",
+      "item_id": "R001_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 240,
+      "expiry": "2025-11-15T22:07:36.752703",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R001",
+      "item_id": "R001_F003",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 281,
+      "expiry": "2025-11-15T22:07:36.752716",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R001",
+      "item_id": "R001_F004",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 222,
+      "expiry": "2025-11-15T17:07:36.752726",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R002",
+      "item_id": "R002_F001",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 233,
+      "expiry": "2025-11-15T17:07:36.752754",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R002",
+      "item_id": "R002_F002",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 228,
+      "expiry": "2025-11-15T18:07:36.752763",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R002",
+      "item_id": "R002_F003",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 282,
+      "expiry": "2025-11-15T18:07:36.752770",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R002",
+      "item_id": "R002_F004",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 274,
+      "expiry": "2025-11-15T21:07:36.752777",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R003",
+      "item_id": "R003_F001",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 199,
+      "expiry": "2025-11-15T18:07:36.752797",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R003",
+      "item_id": "R003_F002",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 294,
+      "expiry": "2025-11-15T18:07:36.752804",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R003",
+      "item_id": "R003_F003",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 248,
+      "expiry": "2025-11-15T21:07:36.752812",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R003",
+      "item_id": "R003_F004",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 203,
+      "expiry": "2025-11-16T00:07:36.752819",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R003",
+      "item_id": "R003_F005",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 240,
+      "expiry": "2025-11-15T18:07:36.752826",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R004",
+      "item_id": "R004_F001",
+      "name": "Fries Basket",
+      "food_type": "american",
+      "original_price": 158,
+      "expiry": "2025-11-16T00:07:36.752846",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R004",
+      "item_id": "R004_F002",
+      "name": "Burger Combo",
+      "food_type": "american",
+      "original_price": 301,
+      "expiry": "2025-11-15T17:07:36.752854",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R004",
+      "item_id": "R004_F003",
+      "name": "Chicken Wings",
+      "food_type": "american",
+      "original_price": 270,
+      "expiry": "2025-11-15T17:07:36.752861",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R004",
+      "item_id": "R004_F004",
+      "name": "Club Sandwich",
+      "food_type": "american",
+      "original_price": 242,
+      "expiry": "2025-11-16T00:07:36.752868",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R005",
+      "item_id": "R005_F001",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 287,
+      "expiry": "2025-11-15T17:07:36.752884",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R005",
+      "item_id": "R005_F002",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 190,
+      "expiry": "2025-11-15T18:07:36.752891",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R005",
+      "item_id": "R005_F003",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 190,
+      "expiry": "2025-11-15T21:07:36.752897",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R006",
+      "item_id": "R006_F001",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 210,
+      "expiry": "2025-11-15T22:07:36.752912",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R006",
+      "item_id": "R006_F002",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 182,
+      "expiry": "2025-11-15T18:07:36.752920",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R006",
+      "item_id": "R006_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 258,
+      "expiry": "2025-11-15T17:07:36.752926",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R006",
+      "item_id": "R006_F004",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 182,
+      "expiry": "2025-11-16T00:07:36.752933",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R007",
+      "item_id": "R007_F001",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 313,
+      "expiry": "2025-11-15T21:07:36.752948",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R007",
+      "item_id": "R007_F002",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 160,
+      "expiry": "2025-11-15T17:07:36.752955",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R007",
+      "item_id": "R007_F003",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 203,
+      "expiry": "2025-11-15T18:07:36.752962",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R007",
+      "item_id": "R007_F004",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 254,
+      "expiry": "2025-11-16T00:07:36.752969",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R007",
+      "item_id": "R007_F005",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 177,
+      "expiry": "2025-11-15T22:07:36.752976",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R008",
+      "item_id": "R008_F001",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 202,
+      "expiry": "2025-11-16T00:07:36.752991",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R008",
+      "item_id": "R008_F002",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 260,
+      "expiry": "2025-11-16T00:07:36.752998",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R008",
+      "item_id": "R008_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 256,
+      "expiry": "2025-11-16T00:07:36.753004",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R008",
+      "item_id": "R008_F004",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 270,
+      "expiry": "2025-11-15T18:07:36.753011",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R008",
+      "item_id": "R008_F005",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 307,
+      "expiry": "2025-11-15T17:07:36.753017",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R009",
+      "item_id": "R009_F001",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 162,
+      "expiry": "2025-11-15T22:07:36.753033",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R009",
+      "item_id": "R009_F002",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 205,
+      "expiry": "2025-11-16T00:07:36.753039",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R009",
+      "item_id": "R009_F003",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 238,
+      "expiry": "2025-11-15T18:07:36.753046",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R010",
+      "item_id": "R010_F001",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 179,
+      "expiry": "2025-11-15T18:07:36.753060",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R010",
+      "item_id": "R010_F002",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 267,
+      "expiry": "2025-11-16T00:07:36.753067",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R010",
+      "item_id": "R010_F003",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 228,
+      "expiry": "2025-11-15T18:07:36.753074",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R011",
+      "item_id": "R011_F001",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 221,
+      "expiry": "2025-11-15T17:07:36.753087",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R011",
+      "item_id": "R011_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 270,
+      "expiry": "2025-11-15T18:07:36.753094",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R011",
+      "item_id": "R011_F003",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 213,
+      "expiry": "2025-11-15T22:07:36.753100",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R011",
+      "item_id": "R011_F004",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 172,
+      "expiry": "2025-11-16T00:07:36.753107",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R012",
+      "item_id": "R012_F001",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 241,
+      "expiry": "2025-11-15T21:07:36.753126",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R012",
+      "item_id": "R012_F002",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 223,
+      "expiry": "2025-11-15T22:07:36.753133",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R012",
+      "item_id": "R012_F003",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 309,
+      "expiry": "2025-11-15T21:07:36.753140",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R012",
+      "item_id": "R012_F004",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 170,
+      "expiry": "2025-11-15T18:07:36.753147",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R013",
+      "item_id": "R013_F001",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 198,
+      "expiry": "2025-11-15T18:07:36.753165",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R013",
+      "item_id": "R013_F002",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 275,
+      "expiry": "2025-11-16T00:07:36.753172",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R013",
+      "item_id": "R013_F003",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 297,
+      "expiry": "2025-11-15T18:07:36.753179",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R013",
+      "item_id": "R013_F004",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 206,
+      "expiry": "2025-11-15T22:07:36.753186",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R014",
+      "item_id": "R014_F001",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 206,
+      "expiry": "2025-11-15T22:07:36.753200",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R014",
+      "item_id": "R014_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 240,
+      "expiry": "2025-11-16T00:07:36.753206",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R014",
+      "item_id": "R014_F003",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 209,
+      "expiry": "2025-11-15T18:07:36.753213",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R015",
+      "item_id": "R015_F001",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 208,
+      "expiry": "2025-11-15T18:07:36.753226",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R015",
+      "item_id": "R015_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 220,
+      "expiry": "2025-11-15T18:07:36.753233",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R015",
+      "item_id": "R015_F003",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 261,
+      "expiry": "2025-11-15T17:07:36.753240",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R016",
+      "item_id": "R016_F001",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 230,
+      "expiry": "2025-11-15T18:07:36.753254",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R016",
+      "item_id": "R016_F002",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 250,
+      "expiry": "2025-11-15T22:07:36.753260",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R016",
+      "item_id": "R016_F003",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 186,
+      "expiry": "2025-11-15T21:07:36.753267",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R016",
+      "item_id": "R016_F004",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 255,
+      "expiry": "2025-11-15T21:07:36.753274",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R017",
+      "item_id": "R017_F001",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 298,
+      "expiry": "2025-11-15T17:07:36.753288",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R017",
+      "item_id": "R017_F002",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 215,
+      "expiry": "2025-11-15T22:07:36.753295",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R017",
+      "item_id": "R017_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 233,
+      "expiry": "2025-11-15T21:07:36.753302",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R017",
+      "item_id": "R017_F004",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 253,
+      "expiry": "2025-11-16T00:07:36.753308",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R018",
+      "item_id": "R018_F001",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 310,
+      "expiry": "2025-11-15T21:07:36.753322",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R018",
+      "item_id": "R018_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 274,
+      "expiry": "2025-11-15T22:07:36.753329",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R018",
+      "item_id": "R018_F003",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 295,
+      "expiry": "2025-11-15T18:07:36.753336",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R018",
+      "item_id": "R018_F004",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 236,
+      "expiry": "2025-11-15T17:07:36.753342",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R019",
+      "item_id": "R019_F001",
+      "name": "Protein Box",
+      "food_type": "healthy",
+      "original_price": 250,
+      "expiry": "2025-11-16T00:07:36.753357",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R019",
+      "item_id": "R019_F002",
+      "name": "Fruit Cup",
+      "food_type": "healthy",
+      "original_price": 186,
+      "expiry": "2025-11-16T00:07:36.753364",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R019",
+      "item_id": "R019_F003",
+      "name": "Sushi Roll",
+      "food_type": "asian",
+      "original_price": 349,
+      "expiry": "2025-11-16T00:07:36.753371",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R019",
+      "item_id": "R019_F004",
+      "name": "Grab & Go Salad",
+      "food_type": "healthy",
+      "original_price": 183,
+      "expiry": "2025-11-15T18:07:36.753378",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R019",
+      "item_id": "R019_F005",
+      "name": "Sandwich Wrap",
+      "food_type": "american",
+      "original_price": 250,
+      "expiry": "2025-11-15T17:07:36.753384",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R020",
+      "item_id": "R020_F001",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 211,
+      "expiry": "2025-11-15T18:07:36.753398",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R020",
+      "item_id": "R020_F002",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 178,
+      "expiry": "2025-11-16T00:07:36.753405",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R020",
+      "item_id": "R020_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 249,
+      "expiry": "2025-11-15T17:07:36.753412",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R021",
+      "item_id": "R021_F001",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 238,
+      "expiry": "2025-11-16T00:07:36.753425",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R021",
+      "item_id": "R021_F002",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 284,
+      "expiry": "2025-11-15T22:07:36.753432",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R021",
+      "item_id": "R021_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 288,
+      "expiry": "2025-11-16T00:07:36.753438",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R022",
+      "item_id": "R022_F001",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 261,
+      "expiry": "2025-11-15T18:07:36.753452",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R022",
+      "item_id": "R022_F002",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 288,
+      "expiry": "2025-11-15T17:07:36.753458",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R022",
+      "item_id": "R022_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 246,
+      "expiry": "2025-11-16T00:07:36.753465",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R023",
+      "item_id": "R023_F001",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 195,
+      "expiry": "2025-11-15T17:07:36.753478",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R023",
+      "item_id": "R023_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 262,
+      "expiry": "2025-11-15T21:07:36.753485",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R023",
+      "item_id": "R023_F003",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 181,
+      "expiry": "2025-11-15T18:07:36.753492",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R024",
+      "item_id": "R024_F001",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 272,
+      "expiry": "2025-11-15T21:07:36.753505",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R024",
+      "item_id": "R024_F002",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 239,
+      "expiry": "2025-11-15T17:07:36.753512",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R024",
+      "item_id": "R024_F003",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 245,
+      "expiry": "2025-11-15T17:07:36.753519",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R024",
+      "item_id": "R024_F004",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 229,
+      "expiry": "2025-11-15T21:07:36.753525",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R025",
+      "item_id": "R025_F001",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 199,
+      "expiry": "2025-11-15T17:07:36.753539",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R025",
+      "item_id": "R025_F002",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 225,
+      "expiry": "2025-11-15T21:07:36.753546",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R025",
+      "item_id": "R025_F003",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 205,
+      "expiry": "2025-11-15T21:07:36.753552",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R025",
+      "item_id": "R025_F004",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 217,
+      "expiry": "2025-11-15T18:07:36.753560",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R026",
+      "item_id": "R026_F001",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 289,
+      "expiry": "2025-11-15T21:07:36.753574",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R026",
+      "item_id": "R026_F002",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 190,
+      "expiry": "2025-11-16T00:07:36.753581",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R026",
+      "item_id": "R026_F003",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 240,
+      "expiry": "2025-11-15T22:07:36.753587",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R026",
+      "item_id": "R026_F004",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 194,
+      "expiry": "2025-11-15T17:07:36.753594",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R027",
+      "item_id": "R027_F001",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 273,
+      "expiry": "2025-11-15T21:07:36.753608",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R027",
+      "item_id": "R027_F002",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 170,
+      "expiry": "2025-11-15T17:07:36.753615",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R027",
+      "item_id": "R027_F003",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 313,
+      "expiry": "2025-11-15T17:07:36.753621",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R027",
+      "item_id": "R027_F004",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 259,
+      "expiry": "2025-11-15T21:07:36.753628",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R028",
+      "item_id": "R028_F001",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 190,
+      "expiry": "2025-11-16T00:07:36.753642",
+      "quantity": 2
+    },
+    {
+      "restaurant_id": "R028",
+      "item_id": "R028_F002",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 243,
+      "expiry": "2025-11-15T22:07:36.753649",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R028",
+      "item_id": "R028_F003",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 205,
+      "expiry": "2025-11-15T17:07:36.753656",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R028",
+      "item_id": "R028_F004",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 297,
+      "expiry": "2025-11-15T21:07:36.753662",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R028",
+      "item_id": "R028_F005",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 220,
+      "expiry": "2025-11-15T21:07:36.753669",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R029",
+      "item_id": "R029_F001",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 287,
+      "expiry": "2025-11-15T18:07:36.753683",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R029",
+      "item_id": "R029_F002",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 216,
+      "expiry": "2025-11-15T21:07:36.753689",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R029",
+      "item_id": "R029_F003",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 244,
+      "expiry": "2025-11-15T22:07:36.753696",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R029",
+      "item_id": "R029_F004",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 208,
+      "expiry": "2025-11-15T17:07:36.753702",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R030",
+      "item_id": "R030_F001",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 254,
+      "expiry": "2025-11-15T21:07:36.753717",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R030",
+      "item_id": "R030_F002",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 206,
+      "expiry": "2025-11-15T17:07:36.753724",
+      "quantity": 3
+    },
+    {
+      "restaurant_id": "R030",
+      "item_id": "R030_F003",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 231,
+      "expiry": "2025-11-16T00:07:36.753730",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R030",
+      "item_id": "R030_F004",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 229,
+      "expiry": "2025-11-15T22:07:36.753740",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R030",
+      "item_id": "R030_F005",
+      "name": "Pasta Station Special",
+      "food_type": "italian",
+      "original_price": 301,
+      "expiry": "2025-11-16T00:07:36.753747",
+      "quantity": 5
+    },
+    {
+      "restaurant_id": "R031",
+      "item_id": "R031_F001",
+      "name": "Salad Bar Selection",
+      "food_type": "healthy",
+      "original_price": 198,
+      "expiry": "2025-11-16T00:07:36.753760",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R031",
+      "item_id": "R031_F002",
+      "name": "Sandwich Station",
+      "food_type": "american",
+      "original_price": 218,
+      "expiry": "2025-11-15T22:07:36.753767",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R031",
+      "item_id": "R031_F003",
+      "name": "Pizza Slice",
+      "food_type": "italian",
+      "original_price": 176,
+      "expiry": "2025-11-15T17:07:36.753773",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R032",
+      "item_id": "R032_F001",
+      "name": "Sandwich Wrap",
+      "food_type": "american",
+      "original_price": 252,
+      "expiry": "2025-11-15T17:07:36.753787",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R032",
+      "item_id": "R032_F002",
+      "name": "Sushi Roll",
+      "food_type": "asian",
+      "original_price": 336,
+      "expiry": "2025-11-15T17:07:36.753794",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R032",
+      "item_id": "R032_F003",
+      "name": "Fruit Cup",
+      "food_type": "healthy",
+      "original_price": 173,
+      "expiry": "2025-11-15T21:07:36.753801",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R033",
+      "item_id": "R033_F001",
+      "name": "Stir Fry Bowl",
+      "food_type": "asian",
+      "original_price": 293,
+      "expiry": "2025-11-15T18:07:36.753814",
+      "quantity": 4
+    },
+    {
+      "restaurant_id": "R033",
+      "item_id": "R033_F002",
+      "name": "Chicken Wrap",
+      "food_type": "american",
+      "original_price": 250,
+      "expiry": "2025-11-15T22:07:36.753820",
+      "quantity": 1
+    },
+    {
+      "restaurant_id": "R033",
+      "item_id": "R033_F003",
+      "name": "Veggie Burger",
+      "food_type": "vegetarian",
+      "original_price": 208,
+      "expiry": "2025-11-16T00:07:36.753828",
+      "quantity": 1
+    }
+  ],
+  "timestamp": "2025-11-15T14:07:36.753838"
+}
